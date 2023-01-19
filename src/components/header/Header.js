@@ -2,102 +2,163 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import { ButtonGroup, Select } from "@mui/material";
-import { Search, Shop2Outlined } from "@mui/icons-material";
+import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import LocalGroceryStoreOutlinedIcon from "@mui/icons-material/LocalGroceryStoreOutlined";
+import AdbIcon from "@mui/icons-material/Adb";
 
-export default function ButtonAppBar() {
+const pages = ["Products", "Pricing", "Blog"];
+const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [valueRuEnUz, setValueRuEnUz] = React.useState("Ru")
-  const [valueEn, setValueEn] = React.useState("En")
-  const [valueUz, setValueUz] = React.useState("Uz")
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setValueRuEnUz(event.target.value)
-    setAnchorEl(event.currentTarget);
+const ResponsiveAppBar = () => {
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
   };
 
-  const handleClose = (e) => {
-    console.log(e.target.value);
-    setAnchorEl(null);
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
   };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        position="static"
-        color=""
-        sx={{
-          padding: "15px 10%",
-        }}
-      >
-        <Toolbar>
-          <Box textAlign="left">
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Call us: (+99899) 9994827
-            </Typography>
-
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              info@demolink.org
-            </Typography>
-          </Box>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Logo
+    <AppBar position="static"
+    sx={{width: "100%"}}
+    >
+      <Container>
+        <Toolbar disableGutters>
+          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: "none", md: "flex" },
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".0rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            LOGO
           </Typography>
-          <ButtonGroup variant="text" aria-label="text button group">
-            <IconButton>
-              <Search />
+
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
             </IconButton>
-            <IconButton>
-              <LocalGroceryStoreOutlinedIcon />
-            </IconButton>
-            <div>
-              <IconButton
-                id="demo-positioned-button"
-                aria-controls={open ? "demo-positioned-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-                onClick={handleClick}
-                sx={{
-                  background: "red",
-                  color: "aliceblue",
-                  ":hover": {
-                    background: "red",
-                  },
-                }}
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: "block", md: "none" },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center" component="div" variant="h4">{page}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href=""
+            sx={{
+              mr: 2,
+              display: { xs: "flex", md: "none" },
+              flexGrow: 1,
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            LOGO
+          </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
               >
-                {valueRuEnUz}
+                {page}
+              </Button>
+            ))}
+          </Box>
+
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
-              <Menu
-                id="demo-positioned-menu"
-                aria-labelledby="demo-positioned-button"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-              >
-                <MenuItem  value={10} onClick={handleClose}>Uz</MenuItem>
-                <MenuItem value={20} onClick={handleClose}>Ru</MenuItem>
-                <MenuItem  value={30}onClick={handleClose}>En</MenuItem>
-              
-          </Menu>
-            </div>
-          </ButtonGroup>
+            </Tooltip>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
         </Toolbar>
-      </AppBar>
-    </Box>
+      </Container>
+    </AppBar>
   );
-}
+};
+export default ResponsiveAppBar;
