@@ -14,18 +14,15 @@ import imgHome from "./icons/cover.png";
 
 const styles = {
   paperContainer: {
-    backgroundImage: `url(${imgHome})`,
-    width: "100%",
-    backgroundColor: "rgba(0, 20, 0, 0.99)",
-    height: "500px",
-    backgroundRepeat: "no-repeat",
-    
-  },
+      backgroundImage: `url(${imgHome})`
+  }
 };
+
+
 export default function Home() {
   return (
-    <Box  style={styles.paperContainer} position="relative">
-      <Box position="absolute" sx={{ flexGrow: 1, py: 10 }}>
+       <Paper style={styles.paperContainer}>
+    <Box  sx={{ flexGrow: 1, pt: 10 }}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <Box>
@@ -124,7 +121,7 @@ export default function Home() {
           </Grid>
         </Grid>
       </Box>
-    </Box>
+       </Paper>
   );
 }
 
