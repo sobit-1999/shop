@@ -10,11 +10,13 @@ import Icon1 from "./icons/Vector1.png";
 import Icon2 from "./icons/Vector2.png";
 import Icon3 from "./icons/Vector3.png";
 import imgHome from "./icons/cover.png";
+import { Container } from "@mui/material";
 
 
 const styles = {
   paperContainer: {
-      backgroundImage: `url(${imgHome})`
+      backgroundImage: `url(${imgHome})`,
+      backgroundSize: "cover"
   }
 };
 
@@ -22,6 +24,7 @@ const styles = {
 export default function Home() {
   return (
        <Paper style={styles.paperContainer}>
+              <Container>
     <Box  sx={{ flexGrow: 1, pt: 10 }}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
@@ -121,6 +124,7 @@ export default function Home() {
           </Grid>
         </Grid>
       </Box>
+        </Container>
        </Paper>
   );
 }
