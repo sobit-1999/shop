@@ -11,6 +11,7 @@ export default function About() {
       <Box
         sx={{
           textAlign: "center",
+          mt: {xs:72, md:20}
         }}
       >
         <Typography

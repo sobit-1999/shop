@@ -9,22 +9,26 @@ import Stack from "@mui/material/Stack";
 import Icon1 from "./icons/Vector1.png";
 import Icon2 from "./icons/Vector2.png";
 import Icon3 from "./icons/Vector3.png";
+import imgHome from "./icons/cover.png";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: 0,
-  textAlign: "left",
-  color: "black",
-  boxShadow: "none",
-}));
+
+const styles = {
+  paperContainer: {
+    backgroundImage: `url(${imgHome})`,
+    width: "100%",
+    backgroundColor: "rgba(0, 20, 0, 0.99)",
+    height: "500px",
+    backgroundRepeat: "no-repeat",
+    
+  },
+};
 export default function Home() {
   return (
-    <div>
-      <Box sx={{ flexGrow: 1, py: 10 }}>
+    <Box  style={styles.paperContainer} position="relative">
+      <Box position="absolute" sx={{ flexGrow: 1, py: 10 }}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
-            <Item>
+            <Box>
               <Typography
                 component="div"
                 variant="h3"
@@ -71,10 +75,9 @@ export default function Home() {
                   Learn More
                 </Button>
               </Stack>
-            </Item>
+            </Box>
           </Grid>
           <Grid item xs={6}>
-            <Item>xs=4</Item>
           </Grid>
           <Grid item xs={12}>
             <Box
@@ -96,6 +99,7 @@ export default function Home() {
                       maxWidth: "300px",
                       transition: "2s",
                       cursor: "pointer",
+                      backgroundColor: "#fff",
                       ":hover": {
                       backgroundColor: "rgb(88, 173, 209)",
                       color: "#fff",
@@ -120,7 +124,7 @@ export default function Home() {
           </Grid>
         </Grid>
       </Box>
-    </div>
+    </Box>
   );
 }
 

@@ -15,6 +15,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 
 const pages = ["Home", "About", "Services", "Contact" ];
 
+
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -100,7 +101,6 @@ const ResponsiveAppBar = () => {
               sx={{
                 display: { xs: "block", md: "none",
               width: "100%",
-              background: "blue",
               height: "250px"
               },
               }}
@@ -108,7 +108,7 @@ const ResponsiveAppBar = () => {
               {pages.map((page) => (
                 <MenuItem key={page}
                 onClick={handleCloseNavMenu}
-                sx={{width: "100%", backgroundColor: "red"}}
+                // sx={{width: "100%", backgroundColor: "red"}}
                 >
                   <Typography textAlign="center" component="div" variant="h5">{page}</Typography>
                 </MenuItem>
